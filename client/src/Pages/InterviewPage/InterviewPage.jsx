@@ -3,6 +3,7 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import { useEffect, useState } from "react"
 import { ReactMediaRecorder } from "react-media-recorder";
 import axios from "axios";
+import { VideoRecorder } from "../../Components/VideoRecorder";
 
 const reactQuestions = [
     "Explain the concept of Virtual DOM in React and how it helps in improving performance.",
@@ -136,6 +137,8 @@ export const InterviewPage = () => {
             </div>}
             {/* Video Recorder */}
 
+            <VideoRecorder/>
+
             {/* <ReactMediaRecorder
                 video
                 render={({ status, startRecording, stopRecording, mediaBlobUrl }) => (
@@ -147,6 +150,7 @@ export const InterviewPage = () => {
                     </div>
                 )}
             /> */}
+
 
             {/* EndButton */}
 
