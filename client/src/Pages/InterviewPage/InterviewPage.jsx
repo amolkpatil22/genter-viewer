@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
-
+import { ReactMediaRecorder } from "react-media-recorder";
 import { useEffect, useState } from "react"
 import axios from "axios";
 
@@ -132,7 +132,19 @@ export const InterviewPage = () => {
                         `Q.${text}`}
             </div>}
 
+            {/* Video Recorder */}
 
+            {/* <ReactMediaRecorder
+                video
+                render={({ status, startRecording, stopRecording, mediaBlobUrl }) => (
+                    <div>
+                        <p>{status}</p>
+                        <button onClick={startRecording}>Start Recording</button>
+                        <button onClick={stopRecording}>Stop Recording</button>
+                        <video src={mediaBlobUrl} controls autoPlay loop />
+                    </div>           
+                )}
+            /> */}
 
             {/* EndButton */}
 
