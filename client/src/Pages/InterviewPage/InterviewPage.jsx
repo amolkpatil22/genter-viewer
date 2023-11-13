@@ -3,7 +3,12 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import { useEffect, useState } from "react"
 import { ReactMediaRecorder } from "react-media-recorder";
 import axios from "axios";
+
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { questionsFetch } from "../LandingPage/action";
+
 import { VideoRecorder } from "../../Components/VideoRecorder";
+
 
 const reactQuestions = [
     "Explain the concept of Virtual DOM in React and how it helps in improving performance.",
@@ -21,6 +26,14 @@ export const InterviewPage = () => {
     const [utterance, setUtterance] = useState(null);
     const [isListening, setIsListening] = useState(false)
     const [count, setcount] = useState(null)
+    const [isLoading, setIsLoading] = useState(false)
+    const dispatch = useDispatch()
+    const { sessionID, questions } = useSelector((store) => {
+        return {
+            questions: store.landingReducer.questions,
+            sessionID: store.landingReducer.sessionID,
+        }
+    }, shallowEqual)
     let timeout1
     let timeout2
     let {
@@ -33,6 +46,7 @@ export const InterviewPage = () => {
     useEffect(() => {
         SpeechRecognition.startListening()
     }, [])
+
 
     useEffect(() => {
         if (isListening == false) {
@@ -74,9 +88,9 @@ export const InterviewPage = () => {
 
                 setIsListening(false)
                 timeout2 = setTimeout(() => {
-                    if (count < reactQuestions.length) {
+                    if (count < questions.length) {
                         setcount((prev) => { let newcount = prev + 1; return newcount })
-                        settext(reactQuestions[count])
+                        settext(questions[count].question)
                         resetTranscript()
                     }
                     else {
@@ -116,12 +130,14 @@ export const InterviewPage = () => {
     }
 
 
-
-
-
     const handleChange = () => {
-
-        navigate("/feedback")
+        setIsLoading(true)
+        axios.patch("https://genterviewer-backend.up.railway.app/", { sessionID, responses: answers })
+            .then((res) => {
+                setIsLoading(false)
+                navigate("/feedback")
+            })
+            .catch((err) => console.log(err))
     }
 
     return (
@@ -131,7 +147,7 @@ export const InterviewPage = () => {
 
             {/* ChatData */}
             {text && <div>
-                {text == "Click END button to end this interview" ? text :
+                {text == "Thank you for your response. Let's proceed to the next question." ? text :
                     text == "Your interview has concluded. Please click the END button to conclude the session." ? `🎉${text}🎉` :
                         `Q.${text}`}
             </div>}
@@ -156,12 +172,12 @@ export const InterviewPage = () => {
 
             {count == null && <button onClick={(e) => {
                 setTimeout(() => {
-                    settext(reactQuestions[0])
+                    settext(questions[0].question)
                     setcount(1)
                 }, 1000);
             }}>Start</button>}
 
-            {count !== null && <button onClick={handleChange}>End This Interview</button>}
+            {count !== null && <button disabled={isLoading} onClick={handleChange}>End This Interview</button>}
 
         </div>
     )

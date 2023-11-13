@@ -1,4 +1,6 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const dummyFeedbackData = [
@@ -10,6 +12,20 @@ const dummyFeedbackData = [
 export const FeedbackPage = () => {
     const Navigate = useNavigate()
     const [feedbackData, setFeedbackData] = useState(dummyFeedbackData);
+    const dispatch = useDispatch()
+    const { sessionID, questions } = useSelector((store: any) => {
+        return {
+            questions: store.landingReducer.questions,
+            sessionID: store.landingReducer.sessionID,
+        }
+    }, shallowEqual)
+
+    useEffect(() => {
+        axios.get(`https://genterviewer-backend.up.railway.app/feedback/:${sessionID}`)
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err))
+    }, [])
+
 
     const handleChange = () => {
         Navigate("/")

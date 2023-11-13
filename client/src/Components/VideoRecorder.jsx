@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 export const VideoRecorder = () => {
     const [isRecording, setIsRecording] = useState(false);
