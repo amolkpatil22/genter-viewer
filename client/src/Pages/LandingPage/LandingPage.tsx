@@ -70,12 +70,12 @@ export const LandingPage: React.FC = () => {
 
     return (
         <div>
-            <h1>Welcome to the GenterViewer virtual interviewing platform</h1>
+            <h1 >Welcome to the GenterViewer virtual interviewing platform</h1>
             <div>
                 <h2>Please Provide Information About Your Role</h2>
                 <form onSubmit={handleSubmit}>
                     <div>
-                        <label>Select Job Role:</label>
+                        <label >Select Job Role:</label>
                         <Select
                             value={selectedJobRole}
                             onChange={handleJobRolesChange}
