@@ -1,9 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useEffect } from 'react';
 import './App.css';
-import { AllRoutes } from './Components/AllRoutes';
+import { AllRoutes } from './Common/AllRoutes';
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function App() {
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
     <div className="App">
       <AllRoutes />

@@ -69,14 +69,15 @@ export const LandingPage: React.FC = () => {
     };
 
     return (
-        <div>
-            <h1 >Welcome to the GenterViewer virtual interviewing platform</h1>
-            <div>
+        <>
+            <h1 className="text-3xl font-bold" >Welcome to the GenterViewer virtual interviewing platform</h1>
+            <div className="flex flex-col gap-5" >
                 <h2>Please Provide Information About Your Role</h2>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                     <div>
                         <label >Select Job Role:</label>
                         <Select
+                            className="w-1/2 m-auto"
                             value={selectedJobRole}
                             onChange={handleJobRolesChange}
                             options={jobRoles}
@@ -86,6 +87,7 @@ export const LandingPage: React.FC = () => {
                     <div>
                         <label>Select Tech Stacks:</label>
                         <Select
+                            className="w-1/2 m-auto"
                             value={selectedTechStacks}
                             // onChange={handleTechStacksChange}
                             options={techStacks}
@@ -96,15 +98,16 @@ export const LandingPage: React.FC = () => {
                     <div>
                         <label>Select Programming Language:</label>
                         <Select
+                            className="w-1/2 m-auto"
                             value={selectedLanguage}
                             onChange={handleLanguageChange}
                             options={programmingLanguages}
                             placeholder="Select a programming language"
                         />
                     </div>
-                    <button type="submit">Submit</button>
+                    <button className="border-2 w-1/4 m-auto p-3 rounded-lg hover:bg-green-500 hover:border-green-500 font-bold transition-all" type="submit">Submit</button>
                 </form>
             </div>
-        </div>
+        </>
     );
 };
