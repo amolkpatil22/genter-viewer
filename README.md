@@ -28,6 +28,7 @@ Flexible Learning:
 
 Accessible online anytime, anywhere.
  
+![ai2](https://github.com/amolkpatil22/genter-viewer/assets/130532573/e74a6af0-667d-4a3a-9958-929835fa222f)
 
 ## Authors
 **Team Members :**
