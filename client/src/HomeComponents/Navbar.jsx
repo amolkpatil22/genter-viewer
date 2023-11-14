@@ -3,16 +3,17 @@ import { LandingPage } from "../Pages/LandingPage/LandingPage";
 
 const Navbar = () => {
   const [isDivVisible, setDivVisibility] = useState(false);
-
   const handleButtonClick = () => {
     setDivVisibility(!isDivVisible);
   };
+
+  
 
   return (
     <nav className="bg-gray-800 p-4">
       <div className="container mx-auto flex items-center justify-between">
         {/* Logo */}
-        <p className="text-white text-2xl font-bold">Your Logo</p>
+        <p className="text-white text-2xl font-bold">Genter Viewer</p>
 
         {/* Navigation Links */}
         <button

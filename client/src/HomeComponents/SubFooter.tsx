@@ -9,7 +9,7 @@ const SubFooter = () => {
                 <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-8 lg:max-w-none lg:grid-cols-2">
                     <dl className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
                         <div className="flex flex-col gap-5">
-                            <dt className="mt-4 text-3xl font-bold text-white">Your logo</dt>
+                            <dt className="mt-4 text-3xl font-bold text-white">Genter Viewer</dt>
                             <dd className="mt-2 leading-7 text-gray-400">Technology to revolutionize your hiring process</dd>
                             <div className="rounded-md bg-white/5 p-2 ring-1 ring-white/10 text-white">
                             Start interview
