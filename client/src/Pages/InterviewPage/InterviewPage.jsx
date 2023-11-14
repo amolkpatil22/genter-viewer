@@ -189,7 +189,7 @@ export const InterviewPage = () => {
               Listening...
             </div>
           </div>
-          {/* <VideoRecorder /> */}
+          <VideoRecorder />
         </div>
         <div className=" text-center   ">
 
