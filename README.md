@@ -34,6 +34,6 @@ Accessible online anytime, anywhere.
 **Team Members :**
 - [Amol Patil](https://github.com/amolkpatil22)
 - [Nishant Kumar ](https://github.com/nishantkr163)
-- [Shubhdeep](https://github.com/dev-subhadeep)
+- [Subhadeep](https://github.com/dev-subhadeep)
 - [Shubham Jayswal](https://github.com/shubham-masai) 
 - [Avishkar](https://github.com/aavishkark) 
