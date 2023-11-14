@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { VideoRecorder } from "../../Components/VideoRecorder";
-
+import amol from "./interviwer.png"
 
 
 const reactQuestions = [
@@ -160,7 +160,7 @@ export const InterviewPage = () => {
         <div className=" h-screen  flex gap-32 align-middle justify-center  " >
           <div className="flex  mx-9  flex-col align-middle justify-center w-fit h-fit mt-10 text-center  " style={{ justifyContent: "center", gap: "50px", }}>
             <div className="flex flex-col gap-9 justify-center align-middle  text-center mr-auto" style={{ width: "400px" }}>
-              <img src="https://www.linustock.com/images/uploads/2018/01/1515565917-1.png" style={{ width: "300px", margin: "auto" }}></img>
+              <img src={amol} style={{ width: "300px", margin: "auto" }}></img>
               {text && (
                 <div className=" p-3  m-auto text-xl rounded-lg text-white ">
                   {text ==
