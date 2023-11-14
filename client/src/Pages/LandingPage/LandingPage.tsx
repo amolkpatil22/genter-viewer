@@ -26,6 +26,7 @@ interface FetchParams {
     role: string | null;
     difficulty: string | null;
     user: string | null;
+    length?:Number|null;
 }
 const jobRoles: JobRole[] = [
     { value: 'MERN', label: 'MERN Stack Developer' },
@@ -92,6 +93,7 @@ export const LandingPage: React.FC = () => {
             role: selectedJobRole?.value || null,
             difficulty: selectedTechStacks?.value || null,
             user: user,
+            length:2,
         }
 
         dispatch(questionsFetch(data) as any)

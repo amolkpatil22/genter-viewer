@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../../HomeComponents/Navbar";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
-
+import { Button, Spinner } from '@chakra-ui/react'
 const dummyFeedbackData = [
   {
     parameter: "Communication Skills",
@@ -35,6 +35,9 @@ export const FeedbackPage = () => {
       session_id: store.landingReducer.session_id,
     };
   }, shallowEqual);
+  const [result, setresult] = useState(null)
+  const [isLoading, setisLoading] = useState(false)
+  const [modelAnswers, setmodelAnswers] = useState(null)
   const [userData, setUserData] = useState({
     labels: dummyFeedbackData.map((data) => data.parameter),
     datasets: [
@@ -48,21 +51,29 @@ export const FeedbackPage = () => {
     ],
   });
 
-  useEffect(() => {
-    axios
-      .get(`https://genterviewer-backend.up.railway.app/feedback/${session_id}`)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
-  }, []);
+
+
+  const generateReport = () => {
+    setisLoading(true)
+    axios.get(`https://genterviewer-backend.up.railway.app/feedback/${session_id}`)
+      .then((res) => {
+        setisLoading(false); 
+        const parsedString = res.data.result.replace('"{', '{').replace('}"', '}');
+        setresult(parsedString);
+        setmodelAnswers(res.data.modelAnswers)
+      })
+      .catch((err) => { setisLoading(false); console.log(err) });
+  }
 
   const handleChange = () => {
     Navigate("/");
   };
-
+  
+  console.log(modelAnswers)
   return (
     <>
       <Navbar />
-      <div>
+      {modelAnswers && <div>
         {/* <div className="w-1/2">
                     <Bar data={userData} />
                 </div> */}
@@ -100,7 +111,15 @@ export const FeedbackPage = () => {
             </div>
           ))}
         </div>
-      </div>
+      </div>}
+      {isLoading && <Spinner
+        thickness='4px'
+        speed='0.65s'
+        emptyColor='gray.200'
+        color='blue.500'
+        size='xl'
+      />}
+      {modelAnswers == null && <Button isDisabled={isLoading} onClick={generateReport}>Generate Report</Button>}
       <button onClick={handleChange}>Close this Session</button>
     </>
   );

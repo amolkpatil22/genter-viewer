@@ -26,10 +26,11 @@ export const InterviewPage = () => {
   const [count, setcount] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
-  const { sessionID, questions } = useSelector((store) => {
+  const { sessionID, questions,session_id } = useSelector((store) => {
     return {
       questions: store.landingReducer.questions,
       sessionID: store.landingReducer.sessionID,
+      session_id: store.landingReducer.session_id,
     };
   }, shallowEqual);
   let timeout1;
@@ -144,11 +145,13 @@ export const InterviewPage = () => {
     setIsLoading(true);
     axios
       .patch("https://genterviewer-backend.up.railway.app/", {
-        sessionID,
+        session:session_id,
         responses: answers,
       })
       .then((res) => {
         setIsLoading(false);
+        console.log(res)
+        console.log(answers)
         navigate("/feedback");
       })
       .catch((err) => console.log(err));
@@ -186,7 +189,7 @@ export const InterviewPage = () => {
               Listening...
             </div>
           </div>
-          <VideoRecorder />
+          {/* <VideoRecorder /> */}
         </div>
         <div className=" text-center   ">
 

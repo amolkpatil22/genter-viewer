@@ -9,8 +9,8 @@ export const questionsFetch = (data) => (dispatch) => {
         .then((res) => {
             console.log(res.data)
             localStorage.setItem("sessionID", JSON.stringify(res.data.sessionID));
-            localStorage.setItem("session_id", JSON.stringify(res.data.session_id));
-            dispatch({ type: QuestionSuccess, payload: { questions: res.data.questions, sessionID: res.data.sessionID } })       
+            localStorage.setItem("session_id", JSON.stringify(res.data.session_id));           
+            dispatch({ type: QuestionSuccess, payload: { questions: res.data.questions, sessionID: res.data.sessionID,session_id:res.data.session_id } })       
 
         })
         .catch((err) => { console.log(err); dispatch({ type: QuestionFailure }) })
