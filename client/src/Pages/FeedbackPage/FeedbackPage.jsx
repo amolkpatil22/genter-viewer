@@ -57,8 +57,8 @@ export const FeedbackPage = () => {
     setisLoading(true)
     axios.get(`https://genterviewer-backend.up.railway.app/feedback/${session_id}`)
       .then((res) => {
-        setisLoading(false); 
-        const parsedString = res.data.result.replace('"{', '{').replace('}"', '}');
+        setisLoading(false);
+        const parsedString = JSON.parse(res.data.result.replace('"{', '{').replace('}"', '}'));
         setresult(parsedString);
         setmodelAnswers(res.data.modelAnswers)
       })
@@ -68,8 +68,8 @@ export const FeedbackPage = () => {
   const handleChange = () => {
     Navigate("/");
   };
-  
-  console.log(modelAnswers)
+
+  console.log(result)
   return (
     <>
       <Navbar />
