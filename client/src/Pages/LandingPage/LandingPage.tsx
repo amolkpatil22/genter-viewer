@@ -105,14 +105,15 @@ export const LandingPage: React.FC = () => {
                 <h2>Please Provide Information About Your Role</h2>
                 <form onSubmit={sessionCreate} className="flex flex-col gap-5">
                     <div>
-                        <label >UserName:</label>
+                        <label >Please enter you name:</label>
                         <br />
-                        <input onChange={(e) => { setuser(e.target.value) }} type="text" placeholder="type your name here" />
+                        <input className="w-1/2 rounded-sm h-10 text-center text-black " onChange={(e) => { setuser(e.target.value) }} type="text" required placeholder="Your name here" />
                     </div>
                     <div>
                         <label >Select Job Role:</label>
                         <Select
-                            className="w-1/2 m-auto"
+                            required
+                            className="w-1/2 m-auto text-black"
                             value={selectedJobRole}
                             onChange={handleJobRolesChange}
                             options={jobRoles}
@@ -122,7 +123,8 @@ export const LandingPage: React.FC = () => {
                     <div>
                         <label >Select Expected Salary:</label>
                         <Select
-                            className="w-1/2 m-auto"
+                            required
+                            className="w-1/2 m-auto text-black"
                             value={selectedTechStacks}
                             onChange={handleTechStacksChange}
                             options={techStacks}

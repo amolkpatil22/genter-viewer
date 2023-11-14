@@ -1,9 +1,7 @@
 import { Route, Routes } from "react-router-dom"
-import { LandingPage } from "../Pages/LandingPage/LandingPage"
-import { FeedbackPage } from "../Pages/FeedbackPage/FeedbackPage"
-import { InterviewPage } from "../Pages/InterviewPage/InterviewPage"
 import Home from "../Pages/Home/Home"
-
+import { InterviewPage } from "../Pages/InterviewPage/InterviewPage"
+import { FeedbackPage } from "../Pages/FeedbackPage/FeedbackPage"
 
 
 export const AllRoutes = () => {
