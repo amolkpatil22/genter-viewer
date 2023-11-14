@@ -28,10 +28,11 @@ export const FeedbackPage = () => {
   const Navigate = useNavigate();
   const [feedbackData, setFeedbackData] = useState(dummyFeedbackData);
   const dispatch = useDispatch();
-  const { sessionID, questions } = useSelector((store) => {
+  const { sessionID, questions, session_id } = useSelector((store) => {
     return {
       questions: store.landingReducer.questions,
       sessionID: store.landingReducer.sessionID,
+      session_id: store.landingReducer.session_id,
     };
   }, shallowEqual);
   const [userData, setUserData] = useState({
@@ -49,7 +50,7 @@ export const FeedbackPage = () => {
 
   useEffect(() => {
     axios
-      .get(`https://genterviewer-backend.up.railway.app/feedback/:${sessionID}`)
+      .get(`https://genterviewer-backend.up.railway.app/feedback/${session_id}`)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   }, []);

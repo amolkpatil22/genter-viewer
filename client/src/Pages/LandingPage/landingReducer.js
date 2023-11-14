@@ -7,7 +7,8 @@ let int = {
     questions: [],
     sessionID: JSON.parse(localStorage.getItem("sessionID")) || "",
     isLoading: false,
-    isError: false
+    isError: false,
+    session_id: JSON.parse(localStorage.getItem("session_id")) || "",
 }
 
 export const landingReducer = (state = int, { type, payload }) => {

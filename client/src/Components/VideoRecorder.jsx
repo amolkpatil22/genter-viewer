@@ -64,52 +64,54 @@ export const VideoRecorder = () => {
     window.URL.revokeObjectURL(url);
   };
   return (
-    <div className="mt-10">
+    <div className="mt-10 " >
       {/* <h1 className="text-2xl">Video Recorder</h1> */}
-      <div>
-        {/* <h2>Live Video Capture</h2> */}
-        <video ref={videoRef} style={{ width: "100%", height: "50vh" }} />
-      </div>
-      <div className="flex flex-row-reverse">
-        {isRecording ? (
+      <div className="flex flex-col justify-center border w-fit" style={{ borderRadius: "10px" }}>
+        <div className="w-fit" >
+          {/* <h2>Live Video Capture</h2> */}
+          <video ref={videoRef} style={{ width: "100%", height: "50vh", borderRadius: "10px" }} />
+        </div>
+        <div className="flex flex-row-reverse justify-center">
+          {isRecording ? (
+            <button
+              className="m-5 border rounded-lg p-2 hover:scale-110 transition flex gap-3 items-center text-white font-bold"
+              onClick={stopRecording}
+            >
+              Stop Recording
+              <svg
+                width="25"
+                height="25"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill="#e11e1e"
+                  d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2S2 6.477 2 12s4.477 10 10 10ZM9.5 8h5A1.5 1.5 0 0 1 16 9.5v5a1.5 1.5 0 0 1-1.5 1.5h-5A1.5 1.5 0 0 1 8 14.5v-5A1.5 1.5 0 0 1 9.5 8Z"
+                />
+              </svg>
+            </button>
+          ) : (
+            ""
+          )}
           <button
             className="m-5 border rounded-lg p-2 hover:scale-110 transition flex gap-3 items-center text-white font-bold"
-            onClick={stopRecording}
+            onClick={downloadRecording}
+            disabled={!recordedChunks.length}
           >
-            Stop Recording
+            Download Recording
             <svg
               width="25"
               height="25"
               viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
+              xmlns="https://www.w3.org/2000/svg"
             >
               <path
-                fill="#e11e1e"
-                d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2S2 6.477 2 12s4.477 10 10 10ZM9.5 8h5A1.5 1.5 0 0 1 16 9.5v5a1.5 1.5 0 0 1-1.5 1.5h-5A1.5 1.5 0 0 1 8 14.5v-5A1.5 1.5 0 0 1 9.5 8Z"
+                fill="#23C55E"
+                d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7l7-7z"
               />
             </svg>
           </button>
-        ) : (
-          ""
-        )}
-        <button
-          className="m-5 border rounded-lg p-2 hover:scale-110 transition flex gap-3 items-center text-white font-bold"
-          onClick={downloadRecording}
-          disabled={!recordedChunks.length}
-        >
-          Download Recording
-          <svg
-            width="25"
-            height="25"
-            viewBox="0 0 24 24"
-            xmlns="https://www.w3.org/2000/svg"
-          >
-            <path
-              fill="#23C55E"
-              d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7l7-7z"
-            />
-          </svg>
-        </button>
+        </div>
       </div>
     </div>
   );

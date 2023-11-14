@@ -65,7 +65,7 @@ align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  position: absolute;
+  position: relative;
   top: calc(var(--toggle-offset) - 1.688em + 0.188em);
   left: var(--toggle-offset);
   -webkit-transition: var(--transition);

@@ -3,16 +3,11 @@ import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 import { useEffect, useState } from "react";
-import { ReactMediaRecorder } from "react-media-recorder";
 import axios from "axios";
-
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import { questionsFetch } from "../LandingPage/action";
-
 import { VideoRecorder } from "../../Components/VideoRecorder";
 
-import Navbar from "../../HomeComponents/Navbar";
-import AIBot from "../../Components/AIBot";
+
 
 const reactQuestions = [
   "Explain the concept of Virtual DOM in React and how it helps in improving performance.",
@@ -108,7 +103,14 @@ export const InterviewPage = () => {
             );
           }
         }, 2000);
-      } else {
+      }
+      else if (text == "I hope you're feeling well. We have five questions lined up for you, and you'll have a maximum of three minutes to answer each. Let's dive into the interview.") {
+        setIsListening(false);
+        settext(questions[count].question);
+        resetTranscript();
+      }
+
+      else {
         SpeechRecognition.startListening({ continuous: true });
         timeout1 = setTimeout(() => {
           SpeechRecognition.stopListening();
@@ -154,89 +156,78 @@ export const InterviewPage = () => {
 
   return (
     <>
-      {/* <Navbar /> */}
-      <div className="bg-gray-700 h-screen py-10">
-        {/* GIF Image */}
-        <div className="flex justify-around mx-9">
-          <AIBot />
-          {text && (
-            <div className="border p-3 w-1/3 m-auto text-xl rounded-lg text-white">
-              {text ==
-              "Thank you for your response. Let's proceed to the next question."
-                ? text
-                : text ==
-                  "Your interview has concluded. Please click the END button to conclude the session."
-                ? `🎉${text}🎉`
-                : `Q. ${text}`}
+      <div className="flex flex-col py-10 border gap-0 h-screen bg-gray-700">
+        <div className=" h-screen  flex gap-32 align-middle justify-center  " >
+          <div className="flex  mx-9  flex-col align-middle justify-center w-fit h-fit mt-10 text-center  " style={{ justifyContent: "center", gap: "50px", }}>
+            <div className="flex flex-col gap-9 justify-center align-middle  text-center mr-auto" style={{ width: "400px" }}>
+              <img src="https://www.linustock.com/images/uploads/2018/01/1515565917-1.png" style={{ width: "300px", margin: "auto" }}></img>
+              {text && (
+                <div className=" p-3  m-auto text-xl rounded-lg text-white ">
+                  {text ==
+                    "Thank you for your response. Let's proceed to the next question."
+                    ? text
+                    : text == "I hope you're feeling well. We have five questions lined up for you, and you'll have a maximum of three minutes to answer each. Let's dive into the interview."
+                      ? text
+                      : text ==
+                        "Your interview has concluded. Please click the END button to conclude the session."
+                        ? `🎉${text}🎉`
+                        : `Q. ${text}`}
+                </div>
+
+              )}
+
             </div>
-          )}
-          {/* Video Recorder */}
-
-          <div className="w-1/2 text-center">
-            <VideoRecorder />
+            <div style={{
+              color: "white",
+              fontSize: "30px",
+              opacity: isListening ? 1 : 0,
+              transition: "opacity 1s ease-in-out" // Adjust the transition duration and easing as needed
+            }}>
+              Listening...
+            </div>
           </div>
+          <VideoRecorder />
         </div>
-        {/* <ReactMediaRecorder
-                video
-                render={({ status, startRecording, stopRecording, mediaBlobUrl }) => (
-                    <div>
-                        <p>{status}</p>
-                        <button onClick={startRecording}>Start Recording</button>
-                        <button onClick={stopRecording}>Stop Recording</button>
-                        <video src={mediaBlobUrl} controls autoPlay loop />
-                    </div>
-                )}
-            /> */}
+        <div className=" text-center   ">
 
-        {/* EndButton */}
-
-        {count == null && (
-          <button
-            className="border m-auto rounded-lg p-2 hover:scale-110 transition text-xl font-bold text-green-500 flex gap-4 items-center"
-            onClick={(e) => {
-              setTimeout(() => {
-                settext(questions[0].question);
-                setcount(1);
-              }, 1000);
-            }}
-          >
-            <svg
-              width="30"
-              height="30"
-              viewBox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
+          {count == null && (
+            <button
+              className="border m-auto rounded-lg p-2 hover:scale-110 transition text-xl font-bold text-green-500 flex gap-4 items-center"
+              onClick={(e) => {
+                setTimeout(() => {
+                  settext("I hope you're feeling well. We have five questions lined up for you, and you'll have a maximum of three minutes to answer each. Let's dive into the interview.");
+                  setcount(0);
+                }, 1000);
+              }}
             >
-              <path
-                fill="#23C55E"
-                fill-rule="evenodd"
-                d="m4.25 3l1.166-.624l8 5.333v1.248l-8 5.334l-1.166-.624V3zm1.5 1.401v7.864l5.898-3.932L5.75 4.401z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            Start Interview
-          </button>
-        )}
+              <svg
+                width="30"
+                height="30"
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill="#23C55E"
+                  fill-rule="evenodd"
+                  d="m4.25 3l1.166-.624l8 5.333v1.248l-8 5.334l-1.166-.624V3zm1.5 1.401v7.864l5.898-3.932L5.75 4.401z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              Start Interview
+            </button>
+          )}
 
-        {count !== null && (
-          <button
-            disabled={isLoading}
-            onClick={handleChange}
-            className="m-auto border rounded-lg p-2 hover:scale-110 transition text-xl font-bold text-red-500 flex gap-4 items-center"
-          >
-            <svg
-              width="30"
-              height="30"
-              viewBox="0 0 26 26"
-              xmlns="https://www.w3.org/2000/svg"
+          {count !== null && (
+            <button
+              disabled={isLoading}
+              onClick={handleChange}
+              className="m-auto border rounded-lg p-2 hover:scale-110 transition text-xl font-bold text-red-500 flex gap-4 items-center"
             >
-              <path
-                fill="#000000"
-                d="M16 5c-.551 0-1 .449-1 1v4.875L7.906 5.25a1.339 1.339 0 0 0-1.281.063C6.239 5.545 6 5.963 6 6.405v13.188c0 .443.239.86.625 1.093c.208.127.449.188.688.188c.2 0 .408-.033.593-.125L15 15.125V20c0 .551.449 1 1 1h3c.551 0 1-.449 1-1V6c0-.551-.449-1-1-1h-3z"
-              />
-            </svg>
-            End This Interview
-          </button>
-        )}
+              ⭕ End This Interview
+            </button>
+          )}
+
+        </div>
       </div>
     </>
   );
