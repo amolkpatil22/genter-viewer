@@ -26,7 +26,7 @@ export const InterviewPage = () => {
   const [count, setcount] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
-  const { sessionID, questions,session_id } = useSelector((store) => {
+  const { sessionID, questions, session_id } = useSelector((store) => {
     return {
       questions: store.landingReducer.questions,
       sessionID: store.landingReducer.sessionID,
@@ -108,6 +108,7 @@ export const InterviewPage = () => {
       else if (text == "I hope you're feeling well. We have five questions lined up for you, and you'll have a maximum of three minutes to answer each. Let's dive into the interview.") {
         setIsListening(false);
         settext(questions[count].question);
+        setcount((prev) => prev + 1)
         resetTranscript();
       }
 
@@ -145,7 +146,7 @@ export const InterviewPage = () => {
     setIsLoading(true);
     axios
       .patch("https://genterviewer-backend.up.railway.app/", {
-        session:session_id,
+        session: session_id,
         responses: answers,
       })
       .then((res) => {
