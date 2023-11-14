@@ -58,12 +58,10 @@ export const FeedbackPage = () => {
       .then((res) => {
         setisLoading(false);
 
-        const parsedString = res.data.result
-          .replace('"{', "{")
-          .replace('}"', "}");
-        const resultObject = JSON.parse(parsedString);
-        setresult(resultObject);
-        setmodelAnswers(res.data.modelAnswers);
+        const parsedString = JSON.parse(res.data.result.replace('"{', '{').replace('}"', '}'));
+        setresult(parsedString);
+        setmodelAnswers(res.data.modelAnswers)
+
       })
       .catch((err) => {
         setisLoading(false);
@@ -75,8 +73,7 @@ export const FeedbackPage = () => {
     Navigate("/");
   };
 
-  console.log(modelAnswers);
-  console.log(result);
+
   return (
     <>
       <Navbar />
