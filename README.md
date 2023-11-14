@@ -1,11 +1,10 @@
- 
-![gen ai]![Ai3](https://github.com/amolkpatil22/genter-viewer/assets/130532573/2ec7f58e-1daa-47b7-8c74-ed068e269ba8)
+![Ai3](https://github.com/amolkpatil22/genter-viewer/assets/130532573/2ec7f58e-1daa-47b7-8c74-ed068e269ba8)
 
 
 # Genter-vlewer
  Gender-View AI is a cutting-edge virtual interviewer designed to assist students in interview preparation. It not only guides them through simulated interview scenarios but also provides personalized feedback based on their performance, enhancing their interview skills and boosting confidence.
 
-**Netlify :**  [Genter-vlewer]()
+**Vecel :**  [Genter-vlewer](https://genterviewer.vercel.app/)
 ## Tech Stack
 
 **Front-End:** React | TypScript | Tailwind
@@ -35,6 +34,6 @@ Accessible online anytime, anywhere.
 **Team Members :**
 - [Amol Patil](https://github.com/amolkpatil22)
 - [Nishant Kumar ](https://github.com/nishantkr163)
-- [Shubhdeep](https://github.com/dev-subhadeep)
+- [Subhadeep](https://github.com/dev-subhadeep)
 - [Shubham Jayswal](https://github.com/shubham-masai) 
 - [Avishkar](https://github.com/aavishkark) 
