@@ -5,11 +5,13 @@ import Stepper from '../../HomeComponents/Stepper'
 import About from '../../HomeComponents/About'
 import WhyChooseUs from '../../HomeComponents/WhyChooseUs'
 import SubFooter from '../../HomeComponents/SubFooter'
+import * as config from 'dotenv'
 
 const Home = () => {
+ 
   return (
     <>
-        <Navbar />
+      <Navbar />
       <Hero />
       <div className="flex flex-col sm:flex-row">
         <Stepper />

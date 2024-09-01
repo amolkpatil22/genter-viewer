@@ -1,4 +1,4 @@
-import axios from "axios";
+
 import React, { useEffect, useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
@@ -31,14 +31,14 @@ interface FetchParams {
 const jobRoles: JobRole[] = [
     { value: 'MERN', label: 'MERN Stack Developer' },
     { value: 'MEAN', label: 'MEAN Stack Developer' },
-    { value: 'java', label: 'Java Backend Developer' },
+    { value: 'Java Backend Developer', label: 'Java Backend Developer' },
     { value: 'javascript', label: 'Javascript Developer' },
     { value: 'data analyst', label: 'Data Analyst' },
 ];
 
 const techStacks: TechStack[] = [
     { value: 'easy', label: '3.5 to 7' },
-    { value: 'medium', label: '7 to 12' },
+    { value: 'Medium', label: '7 to 12' },
     { value: 'hard', label: 'above 12' },
 ];
 
@@ -52,6 +52,7 @@ const techStacks: TechStack[] = [
 // ];
 
 export const LandingPage: React.FC = () => {
+   
     const navigate = useNavigate();
     const [user, setuser] = useState<string>("");
     const [selectedJobRole, setSelectedJobRole] = useState<JobRole | null>(null);

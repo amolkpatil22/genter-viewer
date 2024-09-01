@@ -145,7 +145,7 @@ export const InterviewPage = () => {
   const handleChange = () => {
     setIsLoading(true);
     axios
-      .patch("https://genterviewer-backend.up.railway.app/", {
+      .patch(`${process.env.REACT_APP_BASE_URL}/`, {
         session: session_id,
         responses: answers,
       })

@@ -6,6 +6,7 @@ import Navbar from "../../HomeComponents/Navbar";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import { Button, Spinner } from "@chakra-ui/react";
+
 const dummyFeedbackData = [
   {
     parameter: "Communication Skills",
@@ -54,7 +55,7 @@ export const FeedbackPage = () => {
   const generateReport = () => {
     setisLoading(true);
     axios
-      .get(`https://genterviewer-backend.up.railway.app/feedback/${session_id}`)
+      .get(`${process.env.REACT_APP_BASE_URL}/feedback/${session_id}`)
       .then((res) => {
         setisLoading(false);
 
